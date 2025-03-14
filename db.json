@@ -1,0 +1,52 @@
+{
+  "tracker": [
+    {
+      "id": 1,
+      "title": "Freelance",
+      "nominal": 3500000,
+      "type": "income",
+      "category": "Salary",
+      "date": "2025-03-12"
+    },
+    {
+      "id": 2,
+      "title": "Groceries",
+      "nominal": 500000,
+      "type": "expense",
+      "category": "Food",
+      "date": "2025-03-13"
+    },
+    {
+      "id": 3,
+      "title": "Electricity Bill",
+      "nominal": 750000,
+      "type": "expense",
+      "category": "Utilities",
+      "date": "2025-03-14"
+    },
+    {
+      "id": 4,
+      "title": "Gym Membership",
+      "nominal": 300000,
+      "type": "expense",
+      "category": "Health",
+      "date": "2025-03-15"
+    },
+    {
+      "id": 5,
+      "title": "Stock Investment",
+      "nominal": 1000000,
+      "type": "income",
+      "category": "Investment",
+      "date": "2025-03-16"
+    },
+    {
+      "id": 6,
+      "title": "Lunch",
+      "nominal": 75000,
+      "type": "expense",
+      "category": "Food",
+      "date": "2025-03-16"
+    }
+  ]
+}
