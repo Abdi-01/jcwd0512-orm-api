@@ -1,14 +1,11 @@
-import fs from "fs";
+import { Pool } from "pg";
 
-export const accessDB = (collection: string) => {
-  return JSON.parse(fs.readFileSync("./db.json").toString())[collection];
-};
+const db = new Pool({
+  user: "postgres.sxijhdpkbcqezsusmfxv",
+  host: "aws-0-ap-southeast-2.pooler.supabase.com",
+  database: "postgres",
+  password: "expense-db!",
+  port: 5432,
+});
 
-export const updateDB = (collection: string, newData: any) => {
-  const data = {
-    ...JSON.parse(fs.readFileSync("./db.json").toString()),
-    [collection]: newData,
-  };
-  fs.writeFileSync("./db.json", JSON.stringify(data, null, 2));
-  return true;
-};
+export default db;
