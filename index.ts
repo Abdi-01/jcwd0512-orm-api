@@ -1,5 +1,6 @@
 import express, { Application, Request, Response } from "express";
 import cors from "cors";
+import authRouter from "./routers/auth.router";
 import expenseRouter from "./routers/expense.router";
 
 const PORT: number = 2066;
@@ -13,6 +14,7 @@ app.get("/", (req: Request, res: Response) => {
   res.status(200).send("<h1>Expense API</h1>");
 });
 
+app.use("/auth", authRouter);
 app.use("/expense", expenseRouter);
 
 app.listen(PORT, () => {
