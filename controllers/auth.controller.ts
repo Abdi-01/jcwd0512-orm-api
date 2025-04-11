@@ -115,6 +115,19 @@ export const uploadProfileImg = async (
     console.log("LOG FROM FILE CONTROLLER");
 
     console.log("FILE UPLOAD INFO :", req.file);
+    await prisma.accounts.update({
+      data: {
+        profileUrl: `/profile-img/${req.file?.filename}`,
+      },
+      where: {
+        id: res.locals.data.id,
+      },
+    });
+
+    return res.status(200).send({
+      success: true,
+      message: `Update img profile success`,
+    });
   } catch (error) {
     console.log(error);
     return res.status(500).send(error);
