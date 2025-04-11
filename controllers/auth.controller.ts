@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import prisma from "../config/prisma";
 import { hash, genSalt, compare } from "bcrypt";
 import { createToken } from "../utils/createToken";
-import { transporter } from "../utils/emailSender";
+import { sendEmail, transporter } from "../utils/emailSender";
 export const register = async (req: Request, res: Response): Promise<any> => {
   try {
     // - memeriksa apakah data unik yang dibawa sudah ada ?
@@ -26,14 +26,10 @@ export const register = async (req: Request, res: Response): Promise<any> => {
     const token = createToken({
       id: newAccount.id,
     });
-    await transporter.sendMail({
-      from: process.env.MAIL_SENDER,
-      to: req.body.email,
-      subject: "Register",
-      html: `
-      <h1>Verify account</h1>
-      <a href="http://localhost:3000/verify?tkn=${token}">Verify Now</a>
-      `,
+
+    await sendEmail(req.body.email, "Verify Registration", null, {
+      email: req.body.email,
+      token,
     });
 
     return res.status(200).send({
@@ -105,6 +101,20 @@ export const verifyAccount = async (
     });
 
     return res.status(200).send("Your account is VERIFIED NOW");
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send(error);
+  }
+};
+
+export const uploadProfileImg = async (
+  req: Request,
+  res: Response
+): Promise<any> => {
+  try {
+    console.log("LOG FROM FILE CONTROLLER");
+
+    console.log("FILE UPLOAD INFO :", req.file);
   } catch (error) {
     console.log(error);
     return res.status(500).send(error);
